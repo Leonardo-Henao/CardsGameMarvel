@@ -2,7 +2,7 @@ package org.example.business.usecase;
 
 import co.com.sofka.domain.generic.DomainEvent;
 import org.example.business.gateway.ConsultaCartasMaestrasService;
-import org.example.domain.CrearJuegoCommand;
+import org.example.domain.commands.CrearJuegoCommand;
 import org.example.domain.Juego;
 import org.example.domain.JugadoresFactory;
 import org.example.domain.values.JuegoId;
