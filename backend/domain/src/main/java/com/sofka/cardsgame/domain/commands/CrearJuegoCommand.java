@@ -1,4 +1,4 @@
-package org.example.domain.commands;
+package com.sofka.cardsgame.domain.commands;
 
 import co.com.sofka.domain.generic.Command;
 

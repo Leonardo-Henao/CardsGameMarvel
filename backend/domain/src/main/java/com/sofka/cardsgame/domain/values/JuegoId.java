@@ -1,4 +1,4 @@
-package org.example.domain.values;
+package com.sofka.cardsgame.domain.values;
 
 import co.com.sofka.domain.generic.Identity;
 

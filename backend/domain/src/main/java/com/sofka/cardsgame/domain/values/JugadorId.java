@@ -1,8 +1,9 @@
-package org.example.domain.values;
+package com.sofka.cardsgame.domain.values;
 
 import co.com.sofka.domain.generic.Identity;
 
 public class JugadorId extends Identity {
+
     public JugadorId(String id) {
         super(id);
     }

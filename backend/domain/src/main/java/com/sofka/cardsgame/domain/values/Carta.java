@@ -1,20 +1,23 @@
-package org.example.domain.values;
+package com.sofka.cardsgame.domain.values;
 
 import co.com.sofka.domain.generic.ValueObject;
 
 import java.util.Objects;
 
 public class Carta implements ValueObject<Carta.Props> {
+
+    private final CartaMaestraId cartaId;
+    private final Boolean estaOculta;
     private final Integer poder;
-    private final String cartaMaestraId;
     private final Boolean estaHabilitada;
 
-    public Carta(Integer poder, String cartaMaestraId, Boolean estaHabilitada) {
+    public Carta(CartaMaestraId cartaId, Boolean estaOculta, Integer poder, Boolean estaHabilitada) {
+        this.estaOculta = Objects.requireNonNull(estaOculta);
         this.poder = Objects.requireNonNull(poder);
-        this.cartaMaestraId = Objects.requireNonNull(cartaMaestraId);
+        this.cartaId = Objects.requireNonNull(cartaId);
         this.estaHabilitada = Objects.requireNonNull(estaHabilitada);
 
-        if(this.poder <= 0){
+        if (this.poder <= 0) {
             throw new IllegalArgumentException("EL PODER DE LA CARTA NO PUEDE SER NEGATIVO O CERO");
         }
     }
@@ -28,8 +31,13 @@ public class Carta implements ValueObject<Carta.Props> {
             }
 
             @Override
-            public String cartaMaestraId() {
-                return cartaMaestraId;
+            public Boolean estaOCulta() {
+                return estaOculta;
+            }
+
+            @Override
+            public CartaMaestraId cartaId() {
+                return cartaId;
             }
 
             @Override
@@ -40,8 +48,12 @@ public class Carta implements ValueObject<Carta.Props> {
     }
 
     public interface Props {
-         Integer poder();
-         String cartaMaestraId();
-         Boolean estaHabilitada();
+        Integer poder();
+
+        Boolean estaOCulta();
+
+        CartaMaestraId cartaId();
+
+        Boolean estaHabilitada();
     }
 }

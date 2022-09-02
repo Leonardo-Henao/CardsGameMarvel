@@ -1,12 +1,12 @@
-package org.example.business.usecase;
+package com.sofka.cardgames.business.usecase;
 
 import co.com.sofka.domain.generic.DomainEvent;
-import org.example.business.gateway.ConsultaCartasMaestrasService;
-import org.example.domain.commands.CrearJuegoCommand;
-import org.example.domain.Juego;
-import org.example.domain.JugadoresFactory;
-import org.example.domain.values.JuegoId;
-import org.example.domain.values.JugadorId;
+import com.sofka.cardgames.business.gateway.ConsultaCartasMaestrasService;
+import com.sofka.cardsgame.domain.commands.CrearJuegoCommand;
+import com.sofka.cardsgame.domain.Juego;
+import com.sofka.cardsgame.domain.JugadoresFactory;
+import com.sofka.cardsgame.domain.values.JuegoId;
+import com.sofka.cardsgame.domain.values.JugadorId;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

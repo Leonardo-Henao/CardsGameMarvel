@@ -1,7 +1,7 @@
-package org.example.domain;
+package com.sofka.cardsgame.domain;
 
-import org.example.domain.values.JugadorId;
-import org.example.domain.values.Mazo;
+import com.sofka.cardsgame.domain.values.JugadorId;
+import com.sofka.cardsgame.domain.values.Mazo;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,7 +17,7 @@ public class JugadoresFactory {
        this.jugadores.add(new Jugador(id, alias, mazo)) ;
     }
 
-    protected Set<Jugador> jugadores() {
+    protected Set<Jugador> getJugadores() {
         return jugadores;
     }
 }

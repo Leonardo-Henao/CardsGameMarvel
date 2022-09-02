@@ -1,4 +1,4 @@
-package org.example.business.gateway.model;
+package com.sofka.cardgames.business.gateway.model;
 
 public class CartaMaestra {
     private String id;

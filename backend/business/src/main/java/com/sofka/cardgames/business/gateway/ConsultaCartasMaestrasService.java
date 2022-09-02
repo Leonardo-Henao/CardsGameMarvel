@@ -1,6 +1,6 @@
-package org.example.business.gateway;
+package com.sofka.cardgames.business.gateway;
 
-import org.example.business.gateway.model.CartaMaestra;
+import com.sofka.cardgames.business.gateway.model.CartaMaestra;
 import reactor.core.publisher.Flux;
 
 public interface ConsultaCartasMaestrasService {
