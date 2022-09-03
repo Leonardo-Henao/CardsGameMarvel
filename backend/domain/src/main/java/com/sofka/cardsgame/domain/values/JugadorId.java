@@ -4,6 +4,9 @@ import co.com.sofka.domain.generic.Identity;
 
 public class JugadorId extends Identity {
 
+    public JugadorId() {
+    }
+
     public JugadorId(String id) {
         super(id);
     }

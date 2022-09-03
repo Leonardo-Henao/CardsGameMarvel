@@ -16,10 +16,11 @@ public class Ronda implements ValueObject<Ronda.Prop> {
 
     /**
      * Contructor para crear una ronda que todavia no esta iniciada
-     * @param jugadores Id de los jugadores
+     *
+     * @param jugadores   Id de los jugadores
      * @param numeroRonda Numero de la ronda a inicar
      */
-    public  Ronda (Set<JugadorId> jugadores, Integer numeroRonda) {
+    public Ronda(Set<JugadorId> jugadores, Integer numeroRonda) {
         this.jugadores = jugadores;
         this.numeroRonda = numeroRonda;
         this.estaIniciada = false;
@@ -27,8 +28,9 @@ public class Ronda implements ValueObject<Ronda.Prop> {
 
     /**
      * Contructor que crea una ronda y tiene la posibilidad de iniciarla
-     * @param jugadores Id de los jugadores
-     * @param numeroRonda Numero de la ronda a iniciar
+     *
+     * @param jugadores    Id de los jugadores
+     * @param numeroRonda  Numero de la ronda a iniciar
      * @param estaIniciada Setea si la ronda ya inicio
      */
     public Ronda(Set<JugadorId> jugadores, Integer numeroRonda, Boolean estaIniciada) {
@@ -55,6 +57,14 @@ public class Ronda implements ValueObject<Ronda.Prop> {
                 return estaIniciada;
             }
         };
+    }
+
+    public Ronda inicarRonda() {
+        return new Ronda(this.jugadores, this.numeroRonda, true);
+    }
+
+    public Ronda terminarRonda() {
+        return new Ronda(this.jugadores, this.numeroRonda, false);
     }
 
     public interface Prop {

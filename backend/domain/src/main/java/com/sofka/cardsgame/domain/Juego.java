@@ -2,16 +2,12 @@ package com.sofka.cardsgame.domain;
 
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
-import com.sofka.cardsgame.domain.events.JugadorAgregado;
-import com.sofka.cardsgame.domain.events.TableroCreado;
-import com.sofka.cardsgame.domain.values.JuegoId;
-import com.sofka.cardsgame.domain.events.JuegoCreado;
-import com.sofka.cardsgame.domain.values.JugadorId;
-import com.sofka.cardsgame.domain.values.Ronda;
-import com.sofka.cardsgame.domain.values.TableroId;
+import com.sofka.cardsgame.domain.events.*;
+import com.sofka.cardsgame.domain.values.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Juego extends AggregateEvent<JuegoId> {
     protected Map<JugadorId, Jugador> jugadores;
@@ -50,4 +46,48 @@ public class Juego extends AggregateEvent<JuegoId> {
         appendChange(new TableroCreado(id, jugadores.keySet())).apply();
     }
 
+    public void crearRonda(Ronda ronda, Integer tiempo) {
+        appendChange(new RondaCreada(ronda, tiempo)).apply();
+    }
+
+    public void cambiarTiempotablero(TableroId tablero, Integer tiempo) {
+        appendChange(new TiempoCambiadoTablero(tablero, tiempo)).apply();
+    }
+
+    public void ponerCartaEnTablero(TableroId tableroId, JugadorId jugadorId, Carta carta) {
+        appendChange(new CartaPuestaEnTablero(tableroId, jugadorId, carta)).apply();
+        appendChange(new CartaQuitadaDelMazo(jugadorId, carta)).apply();
+    }
+
+    public void quitarCartaTablero(TableroId tableroId, JugadorId jugadorId, Carta carta) {
+        appendChange(new CartaQuitadaDelTablero(tableroId, jugadorId, carta)).apply();
+    }
+
+    public void iniciarRonda() {
+        appendChange(new RondaIniciada()).apply();
+    }
+
+    public void asignarCartasAJugador(JugadorId jugadorId, Integer puntos, Set<Carta> cartasApuestas) {
+        appendChange(new CartasAsignadasAJugador(jugadorId, puntos, cartasApuestas)).apply();
+    }
+
+    public void terminarRonda(TableroId tableroId, Set<JugadorId> jugadoresIds) {
+        appendChange(new RondaTerminada(tableroId, jugadoresIds)).apply();
+    }
+
+    public void finalizarJuego(JugadorId jugadorId, String username) {
+        appendChange(new JuegoFinalizado(jugadorId, username)).apply();
+    }
+
+    public Ronda ronda() {
+        return ronda;
+    }
+
+    public Tablero tablero() {
+        return tablero;
+    }
+
+    public Map<JugadorId, Jugador> jugadores() {
+        return jugadores;
+    }
 }
