@@ -1,5 +1,7 @@
 package com.sofka.cardgames.business.gateway.model;
 
+import com.sofka.cardgames.business.gateway.ListaDeCartaService;
+
 public class CartaMaestra {
     private String id;
     private Integer poder;
@@ -37,4 +39,6 @@ public class CartaMaestra {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    ListaDeCartaService list;
 }

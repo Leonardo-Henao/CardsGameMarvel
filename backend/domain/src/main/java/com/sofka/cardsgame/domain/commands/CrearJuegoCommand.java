@@ -8,6 +8,8 @@ public class CrearJuegoCommand extends Command {
     private final String juegoId;
     private final Map<String, String> jugadores;
 
+    private String jugadorPrincipalId;
+
     public CrearJuegoCommand(String juegoId, Map<String, String> jugadores) {
         this.juegoId = juegoId;
         this.jugadores = jugadores;
