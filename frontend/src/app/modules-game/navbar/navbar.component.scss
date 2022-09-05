@@ -1,0 +1,10 @@
+@import "../../../styles.scss";
+
+h1 {
+    font-family: 'Kanit', sans-serif;
+
+    span {
+        padding: 0px 5px;
+        background: $color-primary;
+    }
+}

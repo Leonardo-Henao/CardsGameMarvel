@@ -172,3 +172,8 @@ fabric.properties
 *.code-workspace
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,angular,intellij
+
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json

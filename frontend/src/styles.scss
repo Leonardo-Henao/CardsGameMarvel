@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+
+// font-family: 'Poppins', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+// font-family: 'Kanit', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+
+$color-primary: #eb5449;
+$background-body: #191919;
+$background-navbar: #262626;
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: $background-body;
+    color: white;
+}
