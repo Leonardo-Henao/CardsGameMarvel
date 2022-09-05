@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit(): void {
    // throw new Error('Method not implemented.');
+   console.log('entro a login');
   }
 
   loginWithGoogle() {

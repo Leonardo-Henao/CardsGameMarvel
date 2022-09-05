@@ -1,7 +1,35 @@
 @import "../../../styles.scss";
 
+// $background-body
+nav {
+    padding: 10px;
+    background: rgb(0, 0, 0);
+    font-size: 1.3rem;
+    margin: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .btn_close_sesion {
+        cursor: pointer;
+        background: transparent;
+        color: white;
+        border: none;
+        font-size: small;
+        padding: 5px;
+        border-radius: 4px;
+        text-transform: capitalize;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .btn_close_sesion:hover {
+        color: red;
+    }
+}
+
 h1 {
     font-family: 'Kanit', sans-serif;
+    margin: 0px;
 
     span {
         padding: 0px 5px;
