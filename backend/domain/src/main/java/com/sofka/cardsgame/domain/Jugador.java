@@ -37,4 +37,5 @@ public class Jugador extends Entity<JugadorId> {
     public Mazo getMazo() {
         return mazo;
     }
+
 }

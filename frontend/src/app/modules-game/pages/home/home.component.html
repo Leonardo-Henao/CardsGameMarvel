@@ -1,1 +1,6 @@
-<p>Home list users</p>
+<app-navbar></app-navbar>
+<select name="jugadores" multiple class="jugadores" formControlName="jugadores">
+    <option *ngFor="let jugador of jugadores" [value]="jugador.id">
+        {{jugador.name_real}}
+    </option>
+</select>

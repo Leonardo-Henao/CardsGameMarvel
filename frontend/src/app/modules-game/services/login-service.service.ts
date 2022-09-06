@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, signInWithPopup, GoogleAuthProvider, UserCredential } from '@angular/fire/auth';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -11,5 +10,8 @@ export class LoginServiceService {
 
   loginWithGoogle(): Promise<UserCredential> {
     return signInWithPopup(this.auth, new GoogleAuthProvider());
+  }
+  signOut() {
+    return this.auth.signOut();
   }
 }

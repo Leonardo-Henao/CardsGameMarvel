@@ -1,4 +1,4 @@
 <nav>
     <h1>The Marvel <span>GAME</span></h1>
-    <button class="btn_close_sesion" >Cerrar sesion</button>
+    <button (click)="signOut()" class="btn_close_sesion" *ngIf="show_logout==true">Cerrar sesion</button>
 </nav>
