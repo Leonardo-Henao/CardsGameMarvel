@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, setDoc, collectionData } from "@angular/fire/firestore";
-import { doc } from 'firebase/firestore';
+import { Firestore, collection, setDoc, collectionData, where, getDocs, onSnapshot } from "@angular/fire/firestore";
+import { doc, query } from 'firebase/firestore';
 import { Observable } from 'rxjs';
 import JugadorModel from './model/jugador.model';
 
@@ -19,7 +19,9 @@ export class DatabaseService {
 
   getDatabase(): Observable<JugadorModel[]> {
     const refjugadores = collection(this.firestore, 'jugadores')
-    return collectionData(refjugadores, { idField: 'id' }) as Observable<JugadorModel[]>;
+    const query_personal = query(refjugadores, where("is_online", "==", true));
+
+    return collectionData(query_personal, { idField: 'id' }) as Observable<JugadorModel[]>;
   }
 
 }

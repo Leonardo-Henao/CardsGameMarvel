@@ -3,12 +3,14 @@
 // $background-body
 nav {
     padding: 10px;
-    background: #000;
+    background: #111111;
     font-size: 1.3rem;
     margin: 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0px;
 
     .btn_close_sesion {
         cursor: pointer;

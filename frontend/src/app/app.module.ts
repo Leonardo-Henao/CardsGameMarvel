@@ -11,6 +11,9 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { HomeComponent } from './modules-game/pages/home/home.component';
 import { LoginComponent } from './modules-game/pages/login/login.component';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { BoardComponent } from './modules-game/pages/board/board.component';
+import { CardComponent } from './modules-game/pages/board/card/card.component';
+import { UserComponent } from './modules-game/pages/board/user/user.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
     NavbarComponent,
     CreateUserComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    BoardComponent,
+    CardComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
