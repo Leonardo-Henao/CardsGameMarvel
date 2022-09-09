@@ -1,16 +1,22 @@
-<app-navbar></app-navbar>
+<navbar></navbar>
 <div class="container">
     <div class="background"></div>
     <div class="container_views">
         <span class="title">Jugadores disponibles</span>
-        <ul name="jugadores" multiple formControlName="jugadores">
-            <li *ngFor="let jugador of jugadores" [value]="jugador.id">
 
-                <img src="{{jugador.photo}}" alt="Error photo user {{jugador.name_real}}">
-                <span class="name">{{jugador.name_real}}</span>
+        <form [formGroup]="formPlayers">
 
-            </li>
-        </ul>
-        <button (click)="goToBoard()">Iniciar juego [Jugadores aleatorios]</button>
+            <select multiple formControlName="jugadores">
+
+                <option *ngFor="let jugador of jugadores" [value]="jugador.id">
+                    <img src="{{jugador.photo}}" alt="Error photo user {{jugador.name_real}}">
+                    <span class="name">{{jugador.name_real}}</span>
+                </option>
+
+            </select>
+            
+            <span class="info">Manten presionado [Ctrl] para seleccionar varios jugadores</span>
+            <button type="submit" [disabled]="formPlayers.invalid" (click)="goToCreateGame()">Iniciar juego</button>
+        </form>
     </div>
 </div>

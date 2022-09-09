@@ -5,16 +5,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
+    width: 100vw;
+    height: 90vh;
 
     .background {
-        z-index: -1;
-        width: 100vmax;
-        height: 100%;
         background-image: url("../../../../assets/images/background.jpg");
-        opacity: 0.2;
     }
 
     .content {
@@ -23,10 +18,9 @@
         text-align: center;
         background: white;
         color: black;
-        border-radius: 20px;
+        border-radius: 10px;
         box-shadow: 1px 1px 6px white;
         padding: 16px;
-        position: absolute;
 
         p {
             font-size: 1.8rem;

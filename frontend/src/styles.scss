@@ -17,3 +17,34 @@ body {
     padding: 0px;
     margin: 0px;
 }
+
+.title {
+    display: block;
+    background: white;
+    position: sticky;
+    top: 0px;
+    padding: 10px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-family: 'Kanit', sans-serif;
+}
+
+.background {
+    z-index: -1;
+    width: 100vmax;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.1;
+}
+
+.info {
+    text-align: center;
+    display: block;
+    font-size: 0.8rem;
+    color: gray;
+    margin: 10px;
+}

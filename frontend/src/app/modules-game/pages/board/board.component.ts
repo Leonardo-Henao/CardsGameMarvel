@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BoardService } from './services/board.service';
 
 @Component({
-  selector: 'app-board',
+  selector: 'board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss']
 })

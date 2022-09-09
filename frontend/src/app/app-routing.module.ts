@@ -4,10 +4,11 @@ import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angula
 import { HomeComponent } from './modules-game/pages/home/home.component';
 import { LoginComponent } from './modules-game/pages/login/login.component';
 import { BoardComponent } from './modules-game/pages/board/board.component';
+import { CreateGameComponent } from './modules-game/pages/create-game/create-game.component';
 
 const routes: Routes = [
   {
-    path: 'app-home',
+    path: 'home',
     component: HomeComponent,
     ...canActivate(() => redirectUnauthorizedTo(['/'])),
     pathMatch: 'full'
@@ -15,12 +16,18 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    ...canActivate(() => redirectLoggedInTo(['/app-home'])),
+    ...canActivate(() => redirectLoggedInTo(['/home'])),
     pathMatch: 'full'
   },
   {
-    path: 'app-board',
+    path: 'board',
     component: BoardComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['/'])),
+    pathMatch: 'full'
+  },
+  {
+    path: 'create-game',
+    component: CreateGameComponent,
     ...canActivate(() => redirectUnauthorizedTo(['/'])),
     pathMatch: 'full'
   }
