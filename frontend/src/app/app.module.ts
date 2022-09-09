@@ -15,6 +15,7 @@ import { CardComponent } from './modules-game/pages/board/card/card.component';
 import { UserComponent } from './modules-game/pages/board/user/user.component';
 import { CreateGameComponent } from './modules-game/pages/create-game/create-game.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     ReactiveFormsModule,
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
