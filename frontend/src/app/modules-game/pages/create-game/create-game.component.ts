@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { GameWsService } from '../../services/game-ws/game-ws.service';
 
 @Component({
   selector: 'create-game',
@@ -8,9 +9,13 @@ import { Router } from '@angular/router';
 })
 export class CreateGameComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private ws: GameWsService
+  ) { }
 
   ngOnInit(): void {
+    this.ws.start("1234").subscribe();    
   }
 
   goToGame(): void {

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BoardService } from './services/board.service';
 
 @Component({
   selector: 'board',
