@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
     this.command = {
       juegoId: this.gameId,
       jugadores: { [this.principalPlayer!.uid]: this.principalPlayer!.displayName },
-      jugadorPrincipal: this.principalPlayer
+      jugadorPrincipalId: this.principalPlayer!.uid
     }
   }
 

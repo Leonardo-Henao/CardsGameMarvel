@@ -20,7 +20,7 @@ export class GameWsService {
   }
 
   create(body: any): Observable<object> {
-    return this.http.post(`${this.URL_HTTP}/juego/crear/`, { body: body });
+    return this.http.post(`${this.URL_HTTP}/juego/crear/`, { ...body });
   }
 
   close() {
