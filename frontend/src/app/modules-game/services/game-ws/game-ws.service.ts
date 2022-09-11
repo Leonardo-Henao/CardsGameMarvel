@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class GameWsService {
 
   private URL_WS: String = "ws://localhost:8081/retrieve";
-  private URL_HTTP: String = "http://localhost:8080";
+  private URL_HTTP: String = "http://localhost:8082";
   private webSocket!: WebSocketSubject<unknown>;
 
   constructor(private http: HttpClient) { }
@@ -19,12 +19,16 @@ export class GameWsService {
     return this.webSocket;
   }
 
+  close() {
+    this.webSocket.closed;
+  }
+
   create(body: any): Observable<object> {
     return this.http.post(`${this.URL_HTTP}/juego/crear/`, { ...body });
   }
 
-  close() {
-    this.webSocket.closed;
+  getGames(): Observable<object> {
+    return this.http.get(`${this.URL_HTTP}/juegos/`);
   }
 
 }

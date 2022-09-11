@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard'
 import { HomeComponent } from './modules-game/pages/home/home.component';
-import { LoginComponent } from './modules-game/pages/login/login.component';
 import { BoardComponent } from './modules-game/pages/board/board.component';
 import { CreateGameComponent } from './modules-game/pages/create-game/create-game.component';
+
+// component: LoginComponent,
 
 const routes: Routes = [
   {
@@ -15,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LoginComponent,
+    loadChildren: () => import('./modules-game/pages/login/login.module').then((a) => a.LoginModule),
     ...canActivate(() => redirectLoggedInTo(['/home'])),
     pathMatch: 'full'
   },

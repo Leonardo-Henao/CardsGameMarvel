@@ -5,10 +5,6 @@ import co.com.sofka.domain.generic.Command;
 public class FinalizarRondaCommand extends Command {
     private String juegoId;
 
-    public FinalizarRondaCommand(String juegoId) {
-        this.juegoId = juegoId;
-    }
-
     public String getJuegoId() {
         return juegoId;
     }

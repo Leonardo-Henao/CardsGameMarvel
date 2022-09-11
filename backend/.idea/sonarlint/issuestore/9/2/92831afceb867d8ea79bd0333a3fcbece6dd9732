@@ -1,0 +1,12 @@
+
+t	java:S116"ZRename this field "CARTAS_POR_MAZO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©ŽÓøüÿÿÿÿ
+r	java:S116"XRename this field "MIN_JUGADORES" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿÈŸÔúÿÿÿÿ
+r	java:S116"XRename this field "MAX_JUGADORES" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…ûÿÁüÿÿÿÿ
+<
+java:S1170"!Make this final field static too.(©ŽÓøüÿÿÿÿ
+<
+java:S1170"!Make this final field static too.(ÿÈŸÔúÿÿÿÿ
+<
+java:S1170"!Make this final field static too.(…ûÿÁüÿÿÿÿ
+C
+java:S1128".Remove this unused import 'java.util.HashSet'.(Ê‚êX

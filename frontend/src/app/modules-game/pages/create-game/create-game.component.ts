@@ -8,15 +8,17 @@ import { GameWsService } from '../../services/game-ws/game-ws.service';
 })
 export class CreateGameComponent implements OnInit {
 
+  dataGames: object;
+
   constructor(
     private router: Router,
     private ws: GameWsService,
   ) {
-
+    this.dataGames = this.ws.getGames().subscribe();
+    console.log(this.dataGames);
   }
 
   ngOnInit(): void {
-    // this.ws.start("1234").subscribe();    
   }
 
   goToGame(): void {
