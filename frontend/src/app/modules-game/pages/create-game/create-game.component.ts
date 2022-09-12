@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameWsService } from '../../services/game-ws/game-ws.service';
+import { JuegoData } from '../../services/model/juegointerface';
+import { JugadorSimple } from '../../services/model/jugadorsimpleinterface';
 @Component({
   selector: 'create-game',
   templateUrl: './create-game.component.html',
@@ -8,21 +10,34 @@ import { GameWsService } from '../../services/game-ws/game-ws.service';
 })
 export class CreateGameComponent implements OnInit {
 
-  dataGames: object;
+  dataGames: any;
 
   constructor(
     private router: Router,
     private ws: GameWsService,
   ) {
-    this.dataGames = this.ws.getGames().subscribe();
-    console.log(this.dataGames);
+    this.dataGames = [];
   }
 
   ngOnInit(): void {
+    this.ws.getGames().subscribe({
+      next: (response) => {
+        this.dataGames = response;
+        console.log(response);
+      },
+      error: (error) => console.log(error)
+    });
   }
 
-  goToGame(): void {
+  goToGame(idGame: string): void {
     this.router.navigate(['/board']);
   }
 
+  getNameCreator(dataGame: JuegoData) {
+    return dataGame.jugadores[dataGame.uid].alias;
+  }
+
+  getNameJugadores(player: JugadorSimple) {
+    return player.alias;
+  }
 }

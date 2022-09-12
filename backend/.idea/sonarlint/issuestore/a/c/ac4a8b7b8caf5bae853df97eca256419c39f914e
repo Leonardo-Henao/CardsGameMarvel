@@ -1,15 +1,0 @@
-
-Z
-java:S1128"DRemove this unused import 'org.example.cardgame.events.JuegoCreado'.(óÄÃÊ
-j
-java:S1128"ORemove this unused import 'org.springframework.data.mongodb.core.query.Update'.(€¬ÌÍıÿÿÿÿ
-I
-java:S1128".Remove this unused import 'java.time.Instant'.(Â‚éñÿÿÿÿÿ
-I
-java:S1128".Remove this unused import 'java.util.HashMap'.(™˜”€ùÿÿÿÿ
-H
-java:S1068"3Remove this unused "COLLECTION_VIEW" private field.(¾¨’y
-G
-java:S1068",Remove this unused "template" private field.(¦›Äİùÿÿÿÿ
-V
-java:S1144#";Remove this unused private "getFilterByAggregateId" method.(ªÃ¾øÿÿÿÿ

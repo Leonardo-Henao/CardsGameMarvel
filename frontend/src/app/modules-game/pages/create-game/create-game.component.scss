@@ -41,16 +41,14 @@
 
         .option_game-players {
             list-style: none;
-
-            li {
-                color: gray;
-                display: inline-block;
-                margin: 2px;
-                border: 1px solid gray;
-                padding: 2px 4px;
-                border-radius: 4px;
-            }
-
+        }
+        p{
+            margin: 2px;
+        }
+        .created_by{
+            text-align: end;
+            color: gray;
+            font-size: 0.8rem;
         }
 
     }

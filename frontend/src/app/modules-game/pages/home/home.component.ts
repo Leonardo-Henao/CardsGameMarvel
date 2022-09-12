@@ -36,11 +36,11 @@ export class HomeComponent implements OnInit {
 
     // ################ HABILITAR #########################
 
-    //    this.gameId = v4();
+        this.gameId = v4();
 
     // ################ HABILITAR #########################
 
-    this.gameId = "7c89ab19-d6e8-4872-b603-373c05dee80a";
+    //this.gameId = "7c89ab19-d6e8-4872-b603-373c05dee80a";
     
 
     this.principalPlayer = this.login$.getMyUser();

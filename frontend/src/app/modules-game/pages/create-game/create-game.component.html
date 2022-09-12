@@ -2,27 +2,13 @@
     <div class="background"></div>
     <div class="container_body">
         <span class="title">Juegos disponibles</span>
+
         <ul name="games_availables" id="games_availables">
 
-            <li class="option_game" value="1" (click)="goToGame()">
-                <span class="option_game-title">Juego 1</span>
-                <ul class="option_game-players">
-                    <li>Player 1</li>
-                    <li>Player 2</li>
-                    <li>Player 3</li>
-                    <li>Player 4</li>
-                    <li>Player 5</li>
-                    <li>Player 6</li>
-                </ul>
-            </li>
-
-            <li class="option_game" value="2" (click)="goToGame()">
-                <span class="option_game-title">Juego 2</span>
-                <ul class="option_game-players">
-                    <li>Player 1</li>
-                    <li>Player 2</li>
-                    <li>Player 3</li>
-                </ul>
+            <li class="option_game" *ngFor="let game of dataGames; let i = index" (click)="goToGame(game.id)">
+                <p class="option_game-title">Juego {{i+1}}</p>
+                <p>Cantidad de jugadores {{game.cantidadJugadores}}</p>
+                <p class="created_by">Creado por {{getNameCreator(game)}}</p>
             </li>
 
         </ul>
