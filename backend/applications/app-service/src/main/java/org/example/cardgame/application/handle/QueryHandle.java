@@ -55,6 +55,31 @@ public class QueryHandle {
     }
 
     @Bean
+    public RouterFunction<ServerResponse> getBoardById() {
+        return RouterFunctions.route(
+                GET("/tablero/{juegoId}"),
+                request -> template.findOne(filterById(request.pathVariable("juegoId")
+                        ), TableroViewModel.class, "tableroview")
+                        .flatMap(board -> ServerResponse.ok()
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .body(BodyInserters.fromPublisher(Mono.just(board), TableroViewModel.class)))
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> getGames() {
+        return RouterFunctions.route(
+                GET("/juegos/"),
+                serverRequest -> template.findAll(JuegoListViewModel.class, "gameview")
+                        .collectList()
+                        .flatMap(games -> ServerResponse.ok()
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .body(BodyInserters.fromPublisher(Flux.fromIterable(games),
+                                        JuegoListViewModel.class))));
+
+    }
+
+    @Bean
     public RouterFunction<ServerResponse> getMazo() {
         return route(
                 GET("/juego/mazo/{uid}/{juegoId}"),
@@ -65,23 +90,9 @@ public class QueryHandle {
         );
     }
 
-    @Bean
-    public RouterFunction<ServerResponse> mazoPorJugador() {
-        return RouterFunctions.route(
-                GET("/jugador/mazo/{uid}"),
-                request -> template.find(filterByUId(request.pathVariable("uid")), MazoViewModel.class, "mazoview")
-                        .collectList()
-                        .flatMap(list -> ServerResponse.ok()
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .body(BodyInserters.fromPublisher(Flux.fromIterable(list), MazoViewModel.class)))
-        );
-    }
-
-
     private Query filterByUId(String uid) {
         return new Query(
-                Criteria.where("jugadores." + uid + ".jugadorId").is(uid)
-        );
+                Criteria.where("jugadores." + uid + ".jugadorId").is(uid));
     }
 
     private Query filterById(String juegoId) {
@@ -95,4 +106,5 @@ public class QueryHandle {
                 Criteria.where("juegoId").is(juegoId).and("uid").is(uid)
         );
     }
+
 }

@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
 
     // ################ HABILITAR #########################
 
-    this.gameId = "1234567";
+    this.gameId = "123";
 
 
     this.principalPlayer = this.login$.getMyUser();
@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
       jugadores: { ...this.command.jugadores, ...playersSend }
     }
 
-    this.gameService$.create(this.command).subscribe({
+    this.gameService$.createGame(this.command).subscribe({
       next: (response) => console.log(response),
       error: (response) => console.log(response),
       complete: () => {

@@ -29,8 +29,18 @@ export class CreateGameComponent implements OnInit {
     });
   }
 
-  goToGame(): void {
-    this.router.navigate([`/board`]);
+  goToGame(idGame: string): void {
+    this.ws.startGame({ juegoId: idGame }).subscribe({
+      next: (res) => {
+        this.ws.start(idGame).subscribe({
+          next: (res) => console.log(res),
+        });
+      },
+      complete: () => {
+
+        this.router.navigate([`/board/${ idGame }`]);
+      },
+    });
   }
 
   getNameCreator(dataGame: JuegoData) {
