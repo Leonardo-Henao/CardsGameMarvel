@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { HttpClient } from '@angular/common/http';
+import { LoginServiceService } from '../user/login-service.service';
+import { JuegoData } from '../model/juegointerface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class GameWsService {
   private URL_HTTP: String = "http://localhost:8082";
   private webSocket!: WebSocketSubject<unknown>;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private login$: LoginServiceService) { }
 
   start(idGame: string): WebSocketSubject<unknown> {
     this.webSocket = webSocket(`${this.URL_WS}/${idGame}`);
@@ -24,11 +26,15 @@ export class GameWsService {
   }
 
   create(body: any): Observable<object> {
-    return this.http.post(`${this.URL_HTTP}/juego/crear/`, { ...body });
+    return this.http.post(`${this.URL_HTTP}/juego/crear`, { ...body });
   }
 
   getGames(): Observable<object> {
-    return this.http.get(`${this.URL_HTTP}/juegos/`);
+    return this.http.get(`${this.URL_HTTP}/juego/listar/${this.login$.getMyUser()?.uid}`);
+  }
+
+  getDataGame(): Observable<object> {
+    return this.http.get(`${this.URL_HTTP}/juego/listar/${this.login$.getMyUser()?.uid}`);
   }
 
 }

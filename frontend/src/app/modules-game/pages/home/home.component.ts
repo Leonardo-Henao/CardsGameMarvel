@@ -15,7 +15,7 @@ import { User } from 'firebase/auth';
 })
 export class HomeComponent implements OnInit {
 
-  jugadores!: JugadorModel[];
+  jugadoresToShow!: JugadorModel[];
   formPlayers!: FormGroup;
 
   command: any;
@@ -36,12 +36,12 @@ export class HomeComponent implements OnInit {
 
     // ################ HABILITAR #########################
 
-        this.gameId = v4();
+    //this.gameId = v4();
 
     // ################ HABILITAR #########################
 
-    //this.gameId = "7c89ab19-d6e8-4872-b603-373c05dee80a";
-    
+    this.gameId = "1234567";
+
 
     this.principalPlayer = this.login$.getMyUser();
     this.command = {
@@ -52,12 +52,15 @@ export class HomeComponent implements OnInit {
   }
 
   jugadoresMinimos(control: AbstractControl): ValidationErrors | null {
-    return control.value.length >= 2 ? null : { erro: "Debe seleccionar minimo dos jugadores" };
+    return control.value.length >= 1 ? null : { erro: "Debe seleccionar minimo dos jugadores" };
   }
 
   ngOnInit(): void {
     this.dbServices$.getDatabase().subscribe({
-      next: (res) => this.jugadores = res,
+      next: (res) => {
+        // this.jugadoresToShow = res.filter(a => a.id != this.principalPlayer!.uid);
+        this.jugadoresToShow = res;
+      },
       error: (err) => console.log(err)
     })
   }

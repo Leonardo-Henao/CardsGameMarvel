@@ -25,12 +25,12 @@ export class CreateGameComponent implements OnInit {
         this.dataGames = response;
         console.log(response);
       },
-      error: (error) => console.log(error)
+      error: (error) => console.log(error),
     });
   }
 
-  goToGame(idGame: string): void {
-    this.router.navigate(['/board']);
+  goToGame(): void {
+    this.router.navigate([`/board`]);
   }
 
   getNameCreator(dataGame: JuegoData) {
