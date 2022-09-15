@@ -76,8 +76,6 @@ export class HomeComponent implements OnInit {
     }
 
     this.gameService$.createGame(this.command).subscribe({
-      next: (response) => console.log(response),
-      error: (response) => console.log(response),
       complete: () => {
         this.router.navigate(['/create-game']);
       }

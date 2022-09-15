@@ -1,7 +1,5 @@
 export interface Round {
-    tiempo: number;
-    jugadores: string[];
-    numero: string;
-    estaIniciada: boolean;
-  }
-  
+  jugadores: string[];
+  numero: string;
+  estaIniciada: null;
+}

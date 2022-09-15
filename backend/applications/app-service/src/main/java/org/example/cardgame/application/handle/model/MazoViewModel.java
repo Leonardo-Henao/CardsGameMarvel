@@ -29,8 +29,17 @@ public class MazoViewModel {
 		private  Boolean estaOculta;
 		private  Boolean estaHabilitada;
 		private  Integer poder;
-
 		private String url;
+
+		private String nombre;
+
+		public String getNombre() {
+			return nombre;
+		}
+
+		public void setNombre(String nombre) {
+			this.nombre = nombre;
+		}
 
 		public String getUrl() {
 			return url;

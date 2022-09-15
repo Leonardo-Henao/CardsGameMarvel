@@ -23,7 +23,6 @@ export class CreateGameComponent implements OnInit {
     this.ws.getGames().subscribe({
       next: (response) => {
         this.dataGames = response;
-        console.log(response);
       },
       error: (error) => console.log(error),
     });
@@ -38,7 +37,7 @@ export class CreateGameComponent implements OnInit {
       },
       complete: () => {
 
-        this.router.navigate([`/board/${ idGame }`]);
+        this.router.navigate([`/board/${idGame}`]);
       },
     });
   }

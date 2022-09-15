@@ -1,7 +1,9 @@
 export interface Card {
-  cartaId:        string;
-  estaOculta:     boolean;
+  cartaId: string;
+  jugadorId: string;
+  estaOculta: boolean;
   estaHabilitada: boolean;
-  poder:          number;
-  uri:            string;
+  poder: number;
+  url: string;
+  nombre : String;
 }

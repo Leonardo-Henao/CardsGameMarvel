@@ -55,18 +55,6 @@ public class QueryHandle {
     }
 
     @Bean
-    public RouterFunction<ServerResponse> getBoardById() {
-        return RouterFunctions.route(
-                GET("/tablero/{juegoId}"),
-                request -> template.findOne(filterById(request.pathVariable("juegoId")
-                        ), TableroViewModel.class, "tableroview")
-                        .flatMap(board -> ServerResponse.ok()
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .body(BodyInserters.fromPublisher(Mono.just(board), TableroViewModel.class)))
-        );
-    }
-
-    @Bean
     public RouterFunction<ServerResponse> getGames() {
         return RouterFunctions.route(
                 GET("/juegos/"),

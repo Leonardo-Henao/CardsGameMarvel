@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { GameWsService } from '../../services/game-ws/game-ws.service';
-import { Board } from '../../services/model/board.model';
-import { JuegoData } from '../../services/model/juegointerface';
+import { AllDataBoard } from '../../services/model/all.data.board';
+import { Card } from '../../services/model/card.model';
 import { LoginServiceService } from '../../services/user/login-service.service';
 
 @Component({
@@ -13,10 +13,13 @@ import { LoginServiceService } from '../../services/user/login-service.service';
 })
 export class BoardComponent implements OnInit {
 
-  private usuarioId: string;
-  juegoId!: string;
+  private playerId: string;
+  gameId!: string;
   isMainPlayer: boolean = false;
-  board: Board | null = null;
+  allDataBoard!: AllDataBoard | null;
+  time = 0;
+  showMyCards: boolean = false;
+  cardUser!: Card[];
 
   constructor(
     private game$: GameWsService,
@@ -24,7 +27,8 @@ export class BoardComponent implements OnInit {
     private login$: LoginServiceService,
     private router: Router
   ) {
-    this.usuarioId = this.login$.getMyUser()?.uid!;
+    this.playerId = this.login$.getMyUser()?.uid!;
+    this.cardUser = [];
   }
 
   ngOnInit() {
@@ -32,15 +36,15 @@ export class BoardComponent implements OnInit {
     this.activatedRoute.params
       .pipe(
         switchMap(({ id }) => {
-          this.juegoId = id;
+          this.gameId = id;
           return this.game$.start(id);
         })
       )
       .subscribe(() => {
-        console.log(" juego id " + this.juegoId);
+        console.log(" juego id " + this.gameId);
       });
 
-    this.game$.start(this.juegoId).subscribe((res) => {
+    this.game$.start(this.gameId).subscribe((res) => {
       console.log(" start " + res);
     });
 
@@ -49,23 +53,39 @@ export class BoardComponent implements OnInit {
 
   getBoardId() {
 
-    this.game$.getBoard(this.juegoId).subscribe({
+    this.game$.getBoard(this.gameId).subscribe({
       next: (res) => {
 
-        // if (res) {
-        this.isMainPlayer = res.jugadorPrincipalId == this.usuarioId;
-        this.board = res;
+        if (res) {
+          this.allDataBoard = res;
+          this.time = this.allDataBoard.tiempo;
+          this.getCardsUser();
 
-        // } else this.router.navigate(['/create-game']);
+        } else this.router.navigate(['/create-game']);
       },
     });
   }
 
   initGame() {
-    this.game$.startGame({ juegoId: this.juegoId }).subscribe({
+    this.game$.startGame({ juegoId: this.gameId }).subscribe({
       next: (res) => console.log(res),
       error: (err) => console.log(err),
     });
   }
 
+  showCards() {
+    this.showMyCards == true ? this.showMyCards = false : this.showMyCards = true;
+  }
+
+  getCardsUser() {
+    this.game$.getMazoUser(this.gameId).subscribe({
+      next: (res) => {
+
+        this.cardUser = res.cartas;
+        console.log(this.cardUser);
+      },
+      error: (err) => console.log(err),
+      complete: () => console.log('complete')
+    });
+  }
 }

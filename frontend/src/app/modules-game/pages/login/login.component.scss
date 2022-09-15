@@ -8,7 +8,7 @@
     width: 100vw;
     height: 90vh;
 
-    .background {
+    .my_background {
         background-image: url("../../../../assets/images/background.jpg");
     }
 
@@ -34,16 +34,4 @@
             font-size: 0.8rem;
         }
     }
-}
-
-button {
-    background: $color-primary;
-    font-size: 1rem;
-    padding: 10px 15px;
-    border-radius: 4px;
-    border: none;
-    text-transform: uppercase;
-    color: white;
-    box-shadow: 1px 1px 4px $color-primary;
-    font-family: 'Kanit', sans-serif;
 }

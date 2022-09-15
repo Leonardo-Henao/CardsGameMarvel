@@ -1,8 +1,8 @@
-import { Round } from "./ronda.model";
+import { Card } from "./card.model";
 
 export interface Board {
-  ronda: Round;
-  cantidadJugadores: number;
-  jugadoresIniciales: string[];
-  jugadorPrincipalId: String
+  id: string;
+  jugadores: string[];
+  habilitado: boolean;
+  cartas: Card;
 }
