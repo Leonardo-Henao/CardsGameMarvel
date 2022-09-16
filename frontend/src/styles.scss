@@ -18,6 +18,14 @@ body {
     margin: 0px;
 }
 
+button {
+    cursor: pointer;
+}
+
+.font_kanit {
+    font-family: 'Kanit', sans-serif;
+}
+
 .title {
     display: block;
     background: white;
@@ -60,4 +68,8 @@ body {
     color: white;
     box-shadow: 1px 1px 4px $color-primary;
     font-family: 'Kanit', sans-serif;
+}
+
+.b {
+    font-weight: bold;
 }

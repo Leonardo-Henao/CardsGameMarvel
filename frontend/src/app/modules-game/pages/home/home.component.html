@@ -8,7 +8,7 @@
             <select multiple formControlName="jugadores">
 
                 <option *ngFor="let jugador of jugadoresToShow" [value]="jugador">
-                    <img src="{{jugador.photo}}" alt="Error photo user {{jugador.name_real}}">
+                    <img src="{{jugador.photo}}" alt="ErrorPhoto">
                     <span class="name">{{jugador.name_real}}</span>
                 </option>
 

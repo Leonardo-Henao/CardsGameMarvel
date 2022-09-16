@@ -14,29 +14,24 @@ export class CreateGameComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private ws: GameWsService,
+    private game$: GameWsService,
   ) {
     this.dataGames = [];
   }
 
   ngOnInit(): void {
-    this.ws.getGames().subscribe({
-      next: (response) => {
-        this.dataGames = response;
-      },
-      error: (error) => console.log(error),
+    this.game$.getGames().subscribe({
+      next: (response) => this.dataGames = response,
+      error: (error) => console.log(error)
     });
   }
 
   goToGame(idGame: string): void {
-    this.ws.startGame({ juegoId: idGame }).subscribe({
+    this.game$.startGame({ juegoId: idGame }).subscribe({
       next: (res) => {
-        this.ws.start(idGame).subscribe({
-          next: (res) => console.log(res),
-        });
+        this.game$.start(idGame).subscribe();
       },
       complete: () => {
-
         this.router.navigate([`/board/${idGame}`]);
       },
     });

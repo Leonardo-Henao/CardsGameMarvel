@@ -23,51 +23,50 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class PonerCartaEnTableroUseCaseTest {
 
-	@Mock
-	private JuegoDomainEventRepository repository;
+    @Mock
+    private JuegoDomainEventRepository repository;
 
-	@InjectMocks
-	private PonerCartaEnTableroUseCase useCase;
+    @InjectMocks
+    private PonerCartaEnTableroUseCase useCase;
 
-	@Test
-	void ponerCarta() {
-		//arrange
-		var command = new PonerCartaEnTablero();
-		command.setCartaId("cartaId1");
-		command.setJuegoId("juegoId1");
-		command.setJugadorId("JugadorId1");
-		when(repository.obtenerEventosPor("juegoId1")).thenReturn(history());
+    @Test
+    void ponerCarta() {
+        //arrange
+        var command = new PonerCartaEnTablero();
+        command.setCartaId("cartaId1");
+        command.setJuegoId("juegoId1");
+        command.setJugadorId("JugadorId1");
+        when(repository.obtenerEventosPor("juegoId1")).thenReturn(history());
 
-		StepVerifier.create(useCase.apply(Mono.just(command)))//act
-			 .expectNextMatches(domainEvent -> {
-				 var event = (CartaPuestaEnTablero) domainEvent;
-				 Assertions.assertEquals("JugadorId1", event.getJugadorId().value());
-				 return "cartaId1".equals(event.getCarta().value().cartaId().value());
-			 })
-			 .expectNextMatches(domainEvent -> {
-				 var event = (CartaQuitadaDelMazo) domainEvent;
-				 Assertions.assertEquals("JugadorId1", event.getJugadorId().value());
-				 return "cartaId1".equals(event.getCarta().value().cartaId().value());
-			 })
-			 .expectComplete()
-			 .verify();
-	}
+        StepVerifier.create(useCase.apply(Mono.just(command)))//act
+                .expectNextMatches(domainEvent -> {
+                    var event = (CartaPuestaEnTablero) domainEvent;
+                    Assertions.assertEquals("JugadorId1", event.getJugadorId().value());
+                    return "cartaId1".equals(event.getCarta().value().cartaId().value());
+                })
+                .expectNextMatches(domainEvent -> {
+                    var event = (CartaQuitadaDelMazo) domainEvent;
+                    Assertions.assertEquals("JugadorId1", event.getJugadorId().value());
+                    return "cartaId1".equals(event.getCarta().value().cartaId().value());
+                })
+                .expectComplete()
+                .verify();
+    }
 
-	private Flux<DomainEvent> history() {
-		var jugadorId = JugadorId.of("JugadorId1");
-		var jugador2Id = JugadorId.of("JugadorId2");
-		var cartas = Set.of(new Carta(
-			 CartaMaestraId.of("cartaId1"),
-			 20,
-			 false, true
-		));
-		var ronda = new Ronda(1, Set.of(jugadorId, jugador2Id));
-		return Flux.just(
-			 new JuegoCreado(jugadorId),
-			 new JugadorAgregado(jugadorId, "JuanDavid", new Mazo(cartas)),
-			 new TableroCreado(new TableroId(), Set.of(jugadorId, jugador2Id)),
-			 new RondaCreada(ronda, 30),
-			 new RondaIniciada()
-		);
-	}
+    private Flux<DomainEvent> history() {
+        var jugadorId = JugadorId.of("JugadorId1");
+        var jugador2Id = JugadorId.of("JugadorId2");
+        var cartas = Set.of(new Carta(
+                CartaMaestraId.of("cartaId1"),
+                20, false, true, "card", "url"));
+
+        var ronda = new Ronda(1, Set.of(jugadorId, jugador2Id));
+        return Flux.just(
+                new JuegoCreado(jugadorId),
+                new JugadorAgregado(jugadorId, "JuanDavid", new Mazo(cartas)),
+                new TableroCreado(new TableroId(), Set.of(jugadorId, jugador2Id)),
+                new RondaCreada(ronda, 30),
+                new RondaIniciada()
+        );
+    }
 }

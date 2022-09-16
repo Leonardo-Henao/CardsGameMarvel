@@ -1,31 +1,59 @@
 <div class="board">
-    <span class="game-id">{{gameId}}</span>
+    <span class="game-id">gid: {{gameId}} | uid: {{UserId}}</span>
     <div class="data_board">
         <span class="data_board-time">Tiempo restante: {{time}}</span>
-        <button class="button_style-ok" (click)="initGame()">iniciar juego</button>
+        <button class="button_style-ok" (click)="startRound()">iniciar ronda</button>
     </div>
     <div class="board_body">
         <div class="my_background"></div>
         <button class="board_body-btn-cartas" (click)="showCards()">Mis cartas</button>
-        <div class="row1">
-
-            <div class="player"></div>
-            <div class="player"></div>
+        <div class="data_ronda font_kanit">
+            <span class="num_ronda">Ronda: {{roundNumber}}</span>
+            <span class="num_players">Jugadores: {{gamePlayers}}/6</span>
         </div>
-        <div class="row2">
-            <div class="player"></div>
-            <div class="player"></div>
-            <div class="player"></div>
+        <div class="mazo_board">
+            <div class="mazo_card" *ngFor="let card of cardsBoard">
+                <img class="mazo_card-img" loading="lazy" src="{{card.url}}" alt="{{card.nombre}} img">
+                <div class="mazo_card-data">
+                    <span class="card_name" title="Nombre">{{card.nombre}}</span>
+                    <span class="card_poder" title="Poder/Fuerza">{{card.poder}} Poder</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="player_cards" *ngIf="showMyCards == true">
-    <div class="card" *ngFor="let card of cardUser">
+    <div class="card" *ngFor="let card of cardsUser" (click)="putCard(card)">
         <img class="card_img" loading="lazy" src="{{card.url}}" alt="{{card.nombre}} img">
         <div class="card_data">
             <span class="card_name" title="Nombre">{{card.nombre}}</span>
             <span class="card_poder" title="Poder/Fuerza">{{card.poder}} Poder</span>
         </div>
+    </div>
+</div>
+
+<div class="mobal" *ngIf="mobalGanador">
+    <div class="mobal_body">
+        <span class="font_kanit mobal_body-title">¡Felicidades!</span>
+        <p class="mobal_body-msj">Eres el(la) afortunado(a) <span class="b">GANADOR(A)</span> de esta ronda</p>
+        <button class="button_style-ok btn_ok" (click)="hiddenMobalGanador()">Continuar</button>
+    </div>
+</div>
+
+<div class="mobal" *ngIf="mobalPerdedor">
+    <div class="mobal_body">
+        <span class="font_kanit mobal_body-title">Es una lastima!</span>
+        <p class="mobal_body-msj">En esta ocacion no fuiste el ganador</p>
+        <button class="button_style-ok btn_ok" (click)="hiddenMobalPerdedor()">Continuar</button>
+    </div>
+</div>
+
+<div class="mobal" *ngIf="mobalWinnerGame">
+    <div class="mobal_body">
+        <span class="font_kanit mobal_body-title">Juego finalizado!</span>
+        <p class="mobal_body-msj">El ganador del juego fue <span class="b">{{winnerPlayer}}</span>
+        </p>
+        <button class="button_style-ok btn_ok" (click)="hiddenMobalWinnerGame()">Finalizar</button>
     </div>
 </div>

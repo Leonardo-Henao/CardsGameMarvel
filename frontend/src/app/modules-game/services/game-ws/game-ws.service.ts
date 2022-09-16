@@ -35,7 +35,7 @@ export class GameWsService {
   }
 
   getGames(): Observable<object> {
-    return this.http.get(`${this.URL_HTTP}/juego/listar/${this.login$.getMyUser()?.uid}`);
+    return this.http.get<object>(`${this.URL_HTTP}/juego/listar/${this.login$.getMyUser()?.uid}`);
   }
 
   getDataGame(): Observable<JuegoData> {
@@ -52,6 +52,14 @@ export class GameWsService {
 
   getMazoUser(idJuego: String): Observable<MazoUser> {
     return this.http.get<MazoUser>(`${this.URL_HTTP}/juego/mazo/${this.login$.getMyUser()?.uid}/${idJuego}`);
+  }
+
+  startRound(gameId: string) {
+    return this.http.post(`${this.URL_HTTP}/juego/ronda/iniciar`, { juegoId: gameId });
+  }
+
+  putUserCardToBoard(body: object) {
+    return this.http.post(`${this.URL_HTTP}/juego/poner`, { ...body });
   }
 
 }

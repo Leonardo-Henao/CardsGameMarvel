@@ -34,14 +34,7 @@ export class HomeComponent implements OnInit {
       )
     });
 
-    // ################ HABILITAR #########################
-
-    //this.gameId = v4();
-
-    // ################ HABILITAR #########################
-
-    this.gameId = "123";
-
+    this.gameId = v4();
 
     this.principalPlayer = this.login$.getMyUser();
     this.command = {
@@ -58,7 +51,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.dbServices$.getDatabase().subscribe({
       next: (res) => {
-        // this.jugadoresToShow = res.filter(a => a.id != this.principalPlayer!.uid);
         this.jugadoresToShow = res;
       },
       error: (err) => console.log(err)
@@ -76,6 +68,7 @@ export class HomeComponent implements OnInit {
     }
 
     this.gameService$.createGame(this.command).subscribe({
+      next: (response) => console.log(response),
       complete: () => {
         this.router.navigate(['/create-game']);
       }
@@ -90,4 +83,5 @@ export class HomeComponent implements OnInit {
       });
     }, {});
   }
+
 }
