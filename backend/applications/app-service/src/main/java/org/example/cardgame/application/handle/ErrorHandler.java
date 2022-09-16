@@ -24,4 +24,5 @@ class ErrorHandler {
 	Mono<ServerResponse> badRequest(Throwable error){
 		return response.apply(HttpStatus.BAD_REQUEST, error.getMessage());
 	}
+
 }

@@ -9,14 +9,18 @@ import java.util.Objects;
  */
 public class Carta implements ValueObject<Carta.Props>, Comparable<Carta> {
 
-    private final CartaMaestraId cartaId;
-    private final Boolean estaOculta;
-    private final Boolean estaHabilitada;
-    private final Integer poder;
+    private CartaMaestraId cartaId;
+    private Boolean estaOculta;
+    private Boolean estaHabilitada;
+    private Integer poder;
 
-    private final String name;
+    private String name;
 
-    private final String url;
+    private String url;
+
+    public Carta(){
+
+    }
 
     public Carta(CartaMaestraId cartaId, Integer poder, Boolean estaOculta, Boolean estaHabilitada,
                  String name, String url) {

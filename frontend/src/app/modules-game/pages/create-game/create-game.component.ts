@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { GameWsService } from '../../services/game-ws/game-ws.service';
 import { JuegoData } from '../../services/model/juegointerface';
 import { JugadorSimple } from '../../services/model/jugadorsimpleinterface';
+
 @Component({
   selector: 'create-game',
   templateUrl: './create-game.component.html',

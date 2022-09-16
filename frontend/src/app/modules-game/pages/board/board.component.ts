@@ -114,13 +114,15 @@ export class BoardComponent implements OnInit {
               if (event.ganadorId.uuid === this.UserId) {
                 event.cartasApuesta.forEach((carta: any) => {
 
+                  console.log(carta);
+
                   const card: Card = {
                     cartaId: carta.cartaId.uuid,
                     estaOculta: carta.estaOculta,
                     estaHabilitada: carta.estaHabilitada,
                     poder: carta.poder,
                     url: carta.url,
-                    nombre: carta.nombre
+                    nombre: carta.name
                   }
                   this.cardsUser.push(card);
                 });

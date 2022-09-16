@@ -187,4 +187,8 @@ public class Juego extends AggregateEvent<JuegoId> {
         appendChange(new JuegoFinalizado(jugadorId, alias)).apply();
 
     }
+
+    public void cambiarCartaJugador(JugadorId jugadorId, Mazo mazo) {
+        appendChange(new CartaCambiada(jugadorId, mazo));
+    }
 }
